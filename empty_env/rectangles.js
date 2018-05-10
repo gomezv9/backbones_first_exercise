@@ -1,6 +1,10 @@
 (function(){
 
-	var Rectangle = Backbone.Model.extend({});
+	var Rectangle = Backbone.Model.extend({
+		defaults: {
+			'type': 'rectangle'
+		}
+	});
 
 	var RectangleView = Backbone.View.extend({
 
@@ -44,6 +48,7 @@
 			this.$el.css({
 				'left': this.$el.position().left + 10
 			});
+			console.log(this.model.has('width')); // show the property has
 		}
 
 	});
@@ -88,9 +93,9 @@
 		var myView = new RectangleView({model:model});
 
 		$('div#canvas').append(myView.render().el);
+		console.log(model.get('type')); // show the default atributte
 	});
 
 	
-
 
 })();
