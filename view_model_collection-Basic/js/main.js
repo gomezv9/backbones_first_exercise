@@ -1,0 +1,40 @@
+
+// In the first few sections, we do all the coding here.
+// Later, you'll see how to organize your code into separate
+// files and modules.
+
+var Song = Backbone.Model.extend();
+
+var Songs = Backbone.Collection.extend({
+	model: Song
+});
+
+var SongView = Backbone.View.extend({
+
+	events: {
+		"click .bookmark": "onClickBookmark"
+	},
+
+	onClickBookmark: function(e){
+		e.stopPropagation();
+		console.log("Bookmark Clicked");
+	},
+
+	render: function(){
+		this.$el.append("<br><span>"+this.model.get("title")+"</span> <button class='bookmark'>Bookmark</button>");
+		return this;
+	}
+
+});
+var songs = new Songs([
+	new Song({ title: "Blue in Green"}),
+	new Song({ title: "So What"}),
+	new Song({ title: "All Blues"})
+]);
+
+songs.each(function(model) {
+	var songView = new SongView({ el: "#container", model: model});
+	songView.render();
+});
+
+
