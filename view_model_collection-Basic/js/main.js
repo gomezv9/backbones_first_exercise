@@ -38,3 +38,21 @@ songs.each(function(model) {
 });
 
 
+
+var found = songs.find(function(item){
+	return item.get("title") === "So What";
+});
+console.log("find 1: ",found.toJSON());
+
+var found2 = songs.findWhere({title: "So What"});
+console.log("find 2: ",found2.toJSON());
+
+songs.on('change', function(model) {
+	console.log("Model Changed: ", model.toJSON());
+});
+
+found2.set("title","So What Changed");
+
+console.log(songs);
+
+
